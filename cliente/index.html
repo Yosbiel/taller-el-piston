@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Taller El Pistón</title>
+    <meta name="description" content="Sistema de gestión para el taller mecánico El Pistón.">
+    <link rel="stylesheet" href="css/estilos.css">
+</head>
+<body>
+
+    <!-- Pantalla de Login -->
+    <div id="pantalla-login" class="pantalla activa">
+        <div class="login-caja">
+            <h1>El Pistón</h1>
+            <p>Inicia sesión para gestionar el taller</p>
+            <form id="form-login">
+                <label for="email">Correo electrónico</label>
+                <input type="email" id="email" required placeholder="admin@test.com">
+                
+                <label for="password">Contraseña</label>
+                <div class="input-password">
+                    <input type="password" id="password" required placeholder="********">
+                    <button type="button" id="toggle-password" class="btn-ojo">Ver</button>
+                </div>
+                
+                <p id="error-login" class="mensaje-error"></p>
+                <button type="submit" class="boton">Entrar</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Aplicación Principal -->
+    <div id="app" class="app oculto">
+        <header>
+            <h1>El Pistón</h1>
+            <nav>
+                <button class="nav-btn activo" data-vista="ordenes">Órdenes</button>
+                <button class="nav-btn" data-vista="clientes">Clientes</button>
+                <button class="nav-btn" data-vista="vehiculos">Vehículos</button>
+                <button class="nav-btn" data-vista="repuestos">Repuestos</button>
+                <button class="nav-btn" data-vista="mecanicos">Mecánicos</button>
+            </nav>
+            <button id="btn-salir" class="boton-secundario">Salir</button>
+        </header>
+
+        <main>
+            <!-- Vista: Órdenes -->
+            <section id="vista-ordenes" class="vista activa">
+                <h2>Órdenes de Servicio</h2>
+                
+                <h3>Nueva Orden</h3>
+                <form id="form-orden" class="formulario">
+                    <label for="orden-vehiculo">ID del Vehículo</label>
+                    <input type="text" id="orden-vehiculo" required placeholder="Copia el ID del vehículo">
+                    <label for="orden-mecanico">ID del Mecánico</label>
+                    <input type="text" id="orden-mecanico" required placeholder="Copia el ID del mecánico">
+                    <label for="orden-problema">Problema reportado</label>
+                    <textarea id="orden-problema" required rows="3"></textarea>
+                    <label for="orden-estado">Estado</label>
+                    <select id="orden-estado" required>
+                        <option value="recibida">Recibida</option>
+                        <option value="en_diagnostico">En diagnóstico</option>
+                        <option value="en_reparacion">En reparación</option>
+                        <option value="lista_para_entregar">Lista para entregar</option>
+                        <option value="entregada">Entregada</option>
+                        <option value="cancelada">Cancelada</option>
+                    </select>
+                    <button type="submit" class="boton">Crear Orden</button>
+                </form>
+                <p id="mensaje-ordenes" class="mensaje-error"></p>
+                <div id="lista-ordenes"></div>
+            </section>
+
+            <!-- Vista: Clientes -->
+            <section id="vista-clientes" class="vista">
+                <h2>Clientes</h2>
+                <h3>Nuevo Cliente</h3>
+                <form id="form-cliente" class="formulario">
+                    <label for="cliente-nombre">Nombre</label>
+                    <input type="text" id="cliente-nombre" required>
+                    <label for="cliente-telefono">Teléfono</label>
+                    <input type="text" id="cliente-telefono" required>
+                    <label for="cliente-direccion">Dirección</label>
+                    <input type="text" id="cliente-direccion">
+                    <button type="submit" class="boton">Guardar Cliente</button>
+                </form>
+                <p id="mensaje-clientes" class="mensaje-error"></p>
+                <div id="lista-clientes"></div>
+            </section>
+
+            <!-- Vista: Vehículos -->
+            <section id="vista-vehiculos" class="vista">
+                <h2>Vehículos</h2>
+                <h3>Nuevo Vehículo</h3>
+                <form id="form-vehiculo" class="formulario">
+                    <label for="vehiculo-matricula">Matrícula</label>
+                    <input type="text" id="vehiculo-matricula" required>
+                    <label for="vehiculo-marca">Marca</label>
+                    <input type="text" id="vehiculo-marca">
+                    <label for="vehiculo-modelo">Modelo</label>
+                    <input type="text" id="vehiculo-modelo">
+                    <label for="vehiculo-anio">Año</label>
+                    <input type="number" id="vehiculo-anio">
+                    <label for="vehiculo-kilometraje">Kilometraje</label>
+                    <input type="number" id="vehiculo-kilometraje">
+                    <label for="vehiculo-cliente">ID del Cliente</label>
+                    <input type="text" id="vehiculo-cliente" required placeholder="Copia el ID del cliente">
+                    <button type="submit" class="boton">Guardar Vehículo</button>
+                </form>
+                <p id="mensaje-vehiculos" class="mensaje-error"></p>
+                <div id="lista-vehiculos"></div>
+            </section>
+
+            <!-- Vista: Repuestos -->
+            <section id="vista-repuestos" class="vista">
+                <h2>Inventario de Repuestos</h2>
+                <h3>Nuevo Repuesto</h3>
+                <form id="form-repuesto" class="formulario">
+                    <label for="repuesto-nombre">Nombre</label>
+                    <input type="text" id="repuesto-nombre" required>
+                    <label for="repuesto-codigo">Código</label>
+                    <input type="text" id="repuesto-codigo" required>
+                    <label for="repuesto-precio">Precio</label>
+                    <input type="number" step="0.01" id="repuesto-precio" required>
+                    <label for="repuesto-existencias">Existencias</label>
+                    <input type="number" id="repuesto-existencias" required>
+                    <button type="submit" class="boton">Guardar Repuesto</button>
+                </form>
+                <p id="mensaje-repuestos" class="mensaje-error"></p>
+                <div id="lista-repuestos"></div>
+            </section>
+
+            <!-- Vista: Mecánicos -->
+            <section id="vista-mecanicos" class="vista">
+                <h2>Mecánicos</h2>
+                <h3>Nuevo Mecánico</h3>
+                <form id="form-mecanico" class="formulario">
+                    <label for="mecanico-nombre">Nombre</label>
+                    <input type="text" id="mecanico-nombre" required>
+                    <label for="mecanico-activo">Activo</label>
+                    <select id="mecanico-activo">
+                        <option value="true">Sí</option>
+                        <option value="false">No</option>
+                    </select>
+                    <button type="submit" class="boton">Guardar Mecánico</button>
+                </form>
+                <p id="mensaje-mecanicos" class="mensaje-error"></p>
+                <div id="lista-mecanicos"></div>
+            </section>
+        </main>
+
+        <!-- Panel de Detalle de Orden -->
+        <div id="panel-detalle" class="modal oculto">
+            <div class="modal-contenido modal-ancho">
+                <span class="cerrar-modal" id="cerrar-detalle">&times;</span>
+                <h2 id="detalle-titulo">Detalle de la Orden</h2>
+                <p id="detalle-info"></p>
+                <hr>
+                <h3>Trabajos (Mano de Obra)</h3>
+                <form id="form-trabajo" class="formulario">
+                    <label for="trabajo-desc">Descripción</label>
+                    <input type="text" id="trabajo-desc" required placeholder="Ej: Cambio de aceite">
+                    <label for="trabajo-precio">Precio</label>
+                    <input type="number" step="0.01" id="trabajo-precio" required>
+                    <button type="submit" class="boton">Añadir Trabajo</button>
+                </form>
+                <p id="error-trabajo" class="mensaje-error"></p>
+                <div id="lista-trabajos"></div>
+                <hr>
+                <h3>Repuestos Usados</h3>
+                <form id="form-repuesto-usado" class="formulario">
+                    <label for="usado-repuesto">ID del Repuesto</label>
+                    <input type="text" id="usado-repuesto" required placeholder="Copia el ID del repuesto">
+                    <label for="usado-cantidad">Cantidad</label>
+                    <input type="number" id="usado-cantidad" required min="1">
+                    <button type="submit" class="boton">Añadir Repuesto</button>
+                </form>
+                <p id="error-repuesto-usado" class="mensaje-error"></p>
+                <div id="lista-usados"></div>
+                <hr>
+                <h3>Pagos</h3>
+                <form id="form-pago" class="formulario">
+                    <label for="pago-monto">Monto</label>
+                    <input type="number" step="0.01" id="pago-monto" required>
+                    <button type="submit" class="boton">Registrar Pago</button>
+                </form>
+                <p id="error-pago" class="mensaje-error"></p>
+                <div id="lista-pagos"></div>
+                <hr>
+                <div class="resumen">
+                    <p><strong>Total de la Orden:</strong> $<span id="total-orden">0.00</span></p>
+                    <p><strong>Total Pagado:</strong> $<span id="total-pagado">0.00</span></p>
+                    <p><strong>Saldo Pendiente:</strong> $<span id="saldo-pendiente">0.00</span></p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal de Edición -->
+        <div id="modal-editar" class="modal oculto">
+            <div class="modal-contenido">
+                <span class="cerrar-modal" id="cerrar-editar">&times;</span>
+                <h2>Editar Registro</h2>
+                <form id="form-editar">
+                    <div id="campos-editar"></div>
+                    <p id="error-editar" class="mensaje-error"></p>
+                    <button type="submit" class="boton">Guardar Cambios</button>
+                </form>
+            </div>
+        </div>
+
+        <!-- Modal de Eliminación Genérico -->
+        <div id="modal-eliminar" class="modal oculto">
+            <div class="modal-contenido">
+                <span class="cerrar-modal" id="cerrar-eliminar">&times;</span>
+                <h2>Confirmar Eliminación</h2>
+                <p id="texto-eliminar">¿Estás seguro de que quieres eliminar este registro?</p>
+                <p id="error-eliminar" class="mensaje-error"></p>
+                <button id="btn-confirmar-eliminar" class="boton" style="background: #d9534f; color: white;">Sí, eliminar</button>
+            </div>
+        </div>
+
+        <!-- Modal de Eliminación de Orden (con opción de devolver inventario) -->
+        <div id="modal-eliminar-orden" class="modal oculto">
+            <div class="modal-contenido">
+                <span class="cerrar-modal" id="cerrar-eliminar-orden">&times;</span>
+                <h2>Eliminar Orden</h2>
+                <p id="texto-eliminar-orden">¿Estás seguro de que quieres eliminar esta orden?</p>
+                <div style="margin-top: 15px;">
+                    <input type="checkbox" id="devolver-inventario" checked>
+                    <label for="devolver-inventario">Devolver los repuestos usados al inventario</label>
+                </div>
+                <p id="error-eliminar-orden" class="mensaje-error"></p>
+                <button id="btn-confirmar-eliminar-orden" class="boton" style="background: #d9534f; color: white;">Sí, eliminar</button>
+            </div>
+        </div>
+
+        <footer class="footer">
+            <p>&copy; 2026 Taller El Pistón - Programación Web</p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>

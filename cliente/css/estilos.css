@@ -1,0 +1,172 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: #f4f4f4;
+    color: #222;
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+/* Utilidades de visibilidad */
+.oculto { display: none !important; }
+.pantalla { display: none; }
+.pantalla.activa { display: flex; justify-content: center; align-items: center; flex: 1; }
+.vista { display: none; }
+.vista.activa { display: block; }
+.mensaje-error { color: #d9534f; font-weight: bold; margin-top: 10px; }
+
+/* Estilos del Login */
+.login-caja {
+    background: white;
+    padding: 40px;
+    border-radius: 10px;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 400px;
+}
+.login-caja h1 { text-align: center; color: #ffb703; margin-bottom: 10px; }
+.login-caja p { text-align: center; margin-bottom: 20px; color: #666; }
+.login-caja label { display: block; margin-top: 15px; font-weight: bold; font-size: 14px; }
+.login-caja input {
+    width: 100%; padding: 10px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;
+}
+
+/* Contenedor para el botón Ver/Ocultar */
+.input-password {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+.input-password input {
+    width: 100%;
+    padding-right: 60px;
+}
+.btn-ojo {
+    position: absolute;
+    right: 5px;
+    background: #eee;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    cursor: pointer;
+    font-size: 12px;
+    padding: 4px 8px;
+    color: #333;
+}
+.btn-ojo:hover { background: #ddd; }
+
+/* Botones generales */
+.boton {
+    width: 100%; margin-top: 20px; padding: 12px; background: #ffb703; color: #222;
+    border: none; border-radius: 5px; font-weight: bold; cursor: pointer;
+}
+.boton:hover { opacity: 0.9; }
+.boton-secundario {
+    padding: 8px 15px; background: #ccc; color: #222; border: none; border-radius: 5px; cursor: pointer;
+}
+
+/* Estructura de la app */
+.app {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+.app header {
+    background: #2b2b2b; color: white; padding: 15px 30px;
+    display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 15px;
+}
+.app header h1 { font-size: 22px; color: #ffb703; }
+.app nav { display: flex; gap: 10px; flex-wrap: wrap; }
+.nav-btn {
+    padding: 8px 15px; background: transparent; color: white; border: 1px solid white;
+    border-radius: 5px; cursor: pointer; transition: 0.2s;
+}
+.nav-btn:hover, .nav-btn.activo { background: #ffb703; color: #222; border-color: #ffb703; }
+
+main { max-width: 1000px; margin: 30px auto; padding: 0 20px; flex: 1; width: 100%; }
+h2 { margin-bottom: 20px; border-bottom: 2px solid #ffb703; padding-bottom: 5px; }
+h3 { margin-top: 20px; margin-bottom: 10px; color: #444; }
+
+/* Formularios */
+.formulario {
+    background: white; padding: 20px; border-radius: 8px; margin-bottom: 20px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+}
+.formulario label { display: block; margin-top: 10px; font-weight: bold; font-size: 14px; }
+.formulario input, .formulario select, .formulario textarea {
+    width: 100%; padding: 8px; margin-top: 5px; border: 1px solid #ccc; border-radius: 5px;
+    font-family: inherit;
+}
+.formulario button { margin-top: 15px; }
+
+/* Tarjetas de las listas */
+.lista-item {
+    background: white; padding: 15px; margin-bottom: 10px; border-radius: 6px;
+    border-left: 4px solid #ffb703; box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    cursor: pointer;
+}
+.lista-item:hover { background: #f9f9f9; }
+.lista-item h3 { margin-top: 0; margin-bottom: 5px; }
+.lista-item p { font-size: 14px; color: #555; margin-bottom: 3px; }
+
+/* Botones dentro de las tarjetas */
+.acciones {
+    display: flex;
+    gap: 10px;
+    margin-top: 10px;
+}
+.acciones button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 13px;
+}
+.acciones .btn-editar {
+    background: #ffb703;
+    color: #222;
+}
+.acciones .btn-eliminar {
+    background: #d9534f;
+    color: white;
+}
+
+/* Modales */
+.modal {
+    display: flex; justify-content: center; align-items: center;
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.6); z-index: 1000;
+}
+.modal-contenido {
+    background: white; padding: 25px; border-radius: 10px;
+    width: 90%; max-width: 400px; position: relative;
+    max-height: 90vh; overflow-y: auto;
+}
+.modal-ancho { max-width: 800px; }
+.cerrar-modal {
+    position: absolute; top: 10px; right: 15px;
+    font-size: 28px; cursor: pointer; color: #666; font-weight: bold;
+}
+.cerrar-modal:hover { color: #d9534f; }
+
+hr { margin: 20px 0; border: none; border-top: 1px solid #eee; }
+
+.resumen {
+    background: #f9f9f9; padding: 15px; border-radius: 8px; margin-top: 20px;
+    font-size: 18px;
+}
+.resumen p { margin-bottom: 10px; }
+
+/* Pie de página */
+.footer {
+    background: #2b2b2b; color: #bbb; text-align: center;
+    padding: 15px; font-size: 14px; margin-top: auto;
+}
