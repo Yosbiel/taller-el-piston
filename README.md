@@ -72,12 +72,5 @@ Proyecto web para la gestión del taller mecánico "El Pistón". Consta de un se
 - **Separación de responsabilidades:** La lógica de negocio (cálculos, validaciones) está separada de la manipulación del DOM.
 
 ## Capturas
-En la carpeta `capturas/` se encuentran las imágenes de la aplicación en funcionamiento:
-- Login
-- Clientes
-- Vehículos
-- Repuestos
-- Mecánicos
-- Órdenes
-- Panel de detalle con cálculos
-- Modal de edición
+
+Puedes ver las capturas de la aplicación en funcionamiento en la carpeta [capturas](./capturas/).
