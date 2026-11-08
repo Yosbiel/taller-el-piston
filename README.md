@@ -2,7 +2,7 @@
 
 Proyecto web para la gestión del taller mecánico "El Pistón". Consta de un servidor con PocketBase y un cliente en HTML, CSS y JavaScript.
 
-## 👤 Autor
+## Autor
 - **Nombre:** Yosbiel Alejandro Díaz Cala
 - **Asignatura:** Programación Web
 - **Año:** 3er Año de Ingeniería Informática
